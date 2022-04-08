@@ -28,8 +28,8 @@ void DisplayRaw();
 void EmptyProc();
 
 //encoder definition
-#define Encoder1_A 12
-#define Encoder1_B 13
+#define Encoder1_A 3 // blue
+#define Encoder1_B 2 // green
 #define Encoder1_Click 11
 
 byte Drag_Flag=0;//flag indicate whether a Drag action occured
@@ -96,6 +96,18 @@ void setup() {
 
   //Stage init
   initStages_Multi();
+
+  /* CurrentStage:
+   * 0: raw stage
+   * 1: Encoder AngularControl
+   * 2: Encoder Logical Angle Control
+   * 3: Analog Angle Display Only
+   * 4: Analog Angle Control
+   * 5: PolarCoordinate Encoder Control
+   * 6: XYZ Encoder Control
+   * 7: GCode XYZ Control
+   */
+  CurrentStage=7;
   Stages[CurrentStage].InitProc();
 }
 

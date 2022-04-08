@@ -11,7 +11,7 @@
 
 struct AngularServo {
   byte PIN;
-  int value;
+  long value;
   int idle;
   int raw_1;
   int ang_1;
@@ -71,8 +71,8 @@ int ASet(AngularServo AServo, float angle){
 void AngularServoInit(){// extreme value: 654~2400
   //Base Servo
   AngularServos[ServoBase].PIN = 10;
-  AngularServos[ServoBase].MIN = 654;
-  AngularServos[ServoBase].MAX = 2400;
+  AngularServos[ServoBase].MIN = 600;
+  AngularServos[ServoBase].MAX = 2296;
   AngularServos[ServoBase].raw_1=1499;
   AngularServos[ServoBase].ang_1=90; //This should bring the arm face forward
   AngularServos[ServoBase].raw_2=2382;
@@ -80,8 +80,8 @@ void AngularServoInit(){// extreme value: 654~2400
   AngularServos[ServoBase].INITANGLE = 90;
   //Left Servo
   AngularServos[ServoLeft].PIN = 9;
-  AngularServos[ServoLeft].MIN = 841; 
-  AngularServos[ServoLeft].MAX = 2248;
+  AngularServos[ServoLeft].MIN = 776; 
+  AngularServos[ServoLeft].MAX = 1850;
   AngularServos[ServoLeft].raw_1=1887;
   AngularServos[ServoLeft].ang_1=180;// This should bring the lever parallel with the ground
   AngularServos[ServoLeft].raw_2=865;
@@ -89,8 +89,8 @@ void AngularServoInit(){// extreme value: 654~2400
   AngularServos[ServoLeft].INITANGLE = 180; 
   //Right Servo
   AngularServos[ServoRight].PIN = 6;
-  AngularServos[ServoRight].MIN = 600;
-  AngularServos[ServoRight].MAX = 2412;
+  AngularServos[ServoRight].MIN = 1276;
+  AngularServos[ServoRight].MAX = 2128;
   AngularServos[ServoRight].raw_1=2319;
   AngularServos[ServoRight].ang_1=0; // This should bring the lever parallel with the ground
   AngularServos[ServoRight].raw_2=1292;
@@ -98,13 +98,50 @@ void AngularServoInit(){// extreme value: 654~2400
   AngularServos[ServoRight].INITANGLE = 90;
   //Claw Servo
   AngularServos[ServoClaw].PIN = 5;
-  AngularServos[ServoClaw].MIN = 800;
+  AngularServos[ServoClaw].MIN = 1245;
   AngularServos[ServoClaw].MAX = 2400;
   AngularServos[ServoClaw].raw_1=2400;
   AngularServos[ServoClaw].ang_1=0; // This is the angle where the claw completely close
   AngularServos[ServoClaw].raw_2=1126;
   AngularServos[ServoClaw].ang_2=90; // This is the angle where the two claws are 90 degree with the centre line (180 degree with each other)
   AngularServos[ServoClaw].INITANGLE = 45;
+  
+  // //Base Servo
+  // AngularServos[ServoBase].PIN = 10;
+  // AngularServos[ServoBase].MIN = 654;
+  // AngularServos[ServoBase].MAX = 2400;
+  // AngularServos[ServoBase].raw_1=1499;
+  // AngularServos[ServoBase].ang_1=90; //This should bring the arm face forward
+  // AngularServos[ServoBase].raw_2=2382;
+  // AngularServos[ServoBase].ang_2=180; // This should bring the arm face the left hand side
+  // AngularServos[ServoBase].INITANGLE = 90;
+  // //Left Servo
+  // AngularServos[ServoLeft].PIN = 9;
+  // AngularServos[ServoLeft].MIN = 841; 
+  // AngularServos[ServoLeft].MAX = 2248;
+  // AngularServos[ServoLeft].raw_1=1887;
+  // AngularServos[ServoLeft].ang_1=180;// This should bring the lever parallel with the ground
+  // AngularServos[ServoLeft].raw_2=865;
+  // AngularServos[ServoLeft].ang_2=90; // This should bring the lever vertical to the ground
+  // AngularServos[ServoLeft].INITANGLE = 180; 
+  // //Right Servo
+  // AngularServos[ServoRight].PIN = 6;
+  // AngularServos[ServoRight].MIN = 600;
+  // AngularServos[ServoRight].MAX = 2412;
+  // AngularServos[ServoRight].raw_1=2319;
+  // AngularServos[ServoRight].ang_1=0; // This should bring the lever parallel with the ground
+  // AngularServos[ServoRight].raw_2=1292;
+  // AngularServos[ServoRight].ang_2=90; // This should bring the lever vertical to the ground
+  // AngularServos[ServoRight].INITANGLE = 90;
+  // //Claw Servo
+  // AngularServos[ServoClaw].PIN = 5;
+  // AngularServos[ServoClaw].MIN = 800;
+  // AngularServos[ServoClaw].MAX = 2400;
+  // AngularServos[ServoClaw].raw_1=2400;
+  // AngularServos[ServoClaw].ang_1=0; // This is the angle where the claw completely close
+  // AngularServos[ServoClaw].raw_2=1126;
+  // AngularServos[ServoClaw].ang_2=90; // This is the angle where the two claws are 90 degree with the centre line (180 degree with each other)
+  // AngularServos[ServoClaw].INITANGLE = 45;
   
   for (int i = 0; i < NumOfServo; i++){
     AngularServos[i].ServoObj.attach(AngularServos[i].PIN);

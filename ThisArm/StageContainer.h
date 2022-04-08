@@ -35,9 +35,7 @@ void initStages () {
 
 }
 
-void initStages_Multi(){
-  CurrentStage=7;
-  
+void initStages_Multi(){  
   //Init the Stage 0, raw stage
   Stages[0].StageName="RawEncoderStage";
   Stages[0].InitProc= EncoderRawControl_Init;
@@ -74,13 +72,13 @@ void initStages_Multi(){
   Stages[5].ControlProc=EncoderARHControl;
   Stages[5].DisplayProc=DisplayARH;
 
-  //init the Stage 6, PolarCoordinate Encoder Control
+  //init the Stage 6, XYZ Encoder Control
   Stages[6].StageName="XYZEncoderControlStage";
   Stages[6].InitProc= EncoderXYZControl_Init;
   Stages[6].ControlProc=EncoderXYZControl;
   Stages[6].DisplayProc=DisplayXYZ;
 
-  //init the Stage 7, PolarCoordinate Encoder Control
+  //init the Stage 7, GCode XYZ Control
   Stages[7].StageName="GCodeXYZControlStage";
   Stages[7].InitProc= Gcodeinit;
   Stages[7].ControlProc=GCodeControl;
