@@ -30,7 +30,7 @@ void EmptyProc();
 //encoder definition
 #define Encoder1_A 3 // blue
 #define Encoder1_B 2 // green
-#define Encoder1_Click 11
+#define Encoder1_Click 4
 
 byte Drag_Flag=0;//flag indicate whether a Drag action occured
 long ReleaseTurnCount =0;
@@ -107,7 +107,7 @@ void setup() {
    * 6: XYZ Encoder Control
    * 7: GCode XYZ Control
    */
-  CurrentStage=7;
+  CurrentStage=0;
   Stages[CurrentStage].InitProc();
 }
 
@@ -275,4 +275,3 @@ void SwitchSelection(){
 * You should have received a copy of the GNU General Public License
 * along with Foobar. If not, see <http://www.gnu.org/licenses/>.
 */
-
