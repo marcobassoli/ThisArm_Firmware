@@ -231,7 +231,10 @@ void processCommand() {
   case 90:  mode_abs=1;  break;  // absolute mode
   case 91:  mode_abs=0;  break;  // relative mode
   
-  default:  break;
+  default: { // not supported command
+      Serial.println("Not supported.");
+      break;
+    }
   }
 
   cmd = parsenumber('M',-1);
@@ -253,7 +256,7 @@ void processCommand() {
  */
 void ready() {
   sofar=0;  // clear input buffer
-  Serial.print(F("ok\n\r"));  // signal ready to receive input
+  Serial.println("ok");  // signal ready to receive input
   // Serial.print(F(">"));  // signal ready to receive input
   
 }
@@ -263,8 +266,9 @@ void ready() {
 void Gcodeinit(){
   Serial.println("Gcode Control initializated");
   
-  setpoint(00,80,00);
+  // setpoint(00,80,00);
   LinearSetpoint(00,80,00,1000);
+  ASet(AngularServos[ServoClaw], 90);
   // where();
   ready();
 }
