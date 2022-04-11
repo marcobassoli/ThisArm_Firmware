@@ -52,18 +52,20 @@ int ASet(AngularServo AServo, float angle){
     case 1:
       AServo.value=AServo.MAX;
       AServo.Angle=LinearMap_float(AServo.raw_1, AServo.ang_1,AServo.raw_2, AServo.ang_2,AServo.MAX);
-      //Serial.print ("O");
+      // Serial.print ("O");
       break;
     case -1:
       AServo.value=AServo.MIN;
       AServo.Angle=LinearMap_float(AServo.raw_1, AServo.ang_1,AServo.raw_2, AServo.ang_2,AServo.MIN);
-      //Serial.print ("U");
+      // Serial.print ("U");
       break;
     default:
       AServo.value=tempValue;
       AServo.Angle=angle;
   }
-  AServo.ServoObj.write (AServo.value);
+  AServo.ServoObj.write(AServo.value);
+  Serial.print(AServo.value);
+  Serial.print(" ");
   return rc;
   
 }
@@ -72,39 +74,45 @@ void AngularServoInit(){// extreme value: 654~2400
   //Base Servo
   AngularServos[ServoBase].PIN = 10;
   AngularServos[ServoBase].MIN = 600;
-  AngularServos[ServoBase].MAX = 2296;
-  AngularServos[ServoBase].raw_1=1499;
+  // AngularServos[ServoBase].MAX = 2296;
+  AngularServos[ServoBase].MAX = 2400;
+  AngularServos[ServoBase].raw_1=1240;
   AngularServos[ServoBase].ang_1=90; //This should bring the arm face forward
-  AngularServos[ServoBase].raw_2=2382;
+  AngularServos[ServoBase].raw_2=2216;
   AngularServos[ServoBase].ang_2=180; // This should bring the arm face the left hand side
   AngularServos[ServoBase].INITANGLE = 90;
   //Left Servo
   AngularServos[ServoLeft].PIN = 9;
-  AngularServos[ServoLeft].MIN = 776; 
-  AngularServos[ServoLeft].MAX = 1850;
-  AngularServos[ServoLeft].raw_1=1887;
+  // AngularServos[ServoLeft].MIN = 776; 
+  AngularServos[ServoLeft].MIN = 600; 
+  // AngularServos[ServoLeft].MAX = 1850;
+  AngularServos[ServoLeft].MAX = 2400;
+  AngularServos[ServoLeft].raw_1=1404;
   AngularServos[ServoLeft].ang_1=180;// This should bring the lever parallel with the ground
-  AngularServos[ServoLeft].raw_2=865;
+  AngularServos[ServoLeft].raw_2=600;
   AngularServos[ServoLeft].ang_2=90; // This should bring the lever vertical to the ground
   AngularServos[ServoLeft].INITANGLE = 180; 
   //Right Servo
   AngularServos[ServoRight].PIN = 6;
-  AngularServos[ServoRight].MIN = 1276;
-  AngularServos[ServoRight].MAX = 2128;
-  AngularServos[ServoRight].raw_1=2319;
+  AngularServos[ServoRight].MIN = 600;
+  // AngularServos[ServoRight].MIN = 1276;
+  AngularServos[ServoRight].MAX = 2400;
+  // AngularServos[ServoRight].MAX = 2128;
+  AngularServos[ServoRight].raw_1=2214;
   AngularServos[ServoRight].ang_1=0; // This should bring the lever parallel with the ground
-  AngularServos[ServoRight].raw_2=1292;
+  AngularServos[ServoRight].raw_2=1332;
   AngularServos[ServoRight].ang_2=90; // This should bring the lever vertical to the ground
   AngularServos[ServoRight].INITANGLE = 90;
   //Claw Servo
   AngularServos[ServoClaw].PIN = 5;
-  AngularServos[ServoClaw].MIN = 1245;
+  // AngularServos[ServoClaw].MIN = 1245;
+  AngularServos[ServoClaw].MIN = 600;
   AngularServos[ServoClaw].MAX = 2400;
-  AngularServos[ServoClaw].raw_1=2400;
+  AngularServos[ServoClaw].raw_1=2318;
   AngularServos[ServoClaw].ang_1=0; // This is the angle where the claw completely close
-  AngularServos[ServoClaw].raw_2=1126;
+  AngularServos[ServoClaw].raw_2=1309;
   AngularServos[ServoClaw].ang_2=90; // This is the angle where the two claws are 90 degree with the centre line (180 degree with each other)
-  AngularServos[ServoClaw].INITANGLE = 45;
+  AngularServos[ServoClaw].INITANGLE = 0;
   
   // //Base Servo
   // AngularServos[ServoBase].PIN = 10;

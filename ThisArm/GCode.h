@@ -32,7 +32,7 @@ int sofar;  // how much is in the buffer
 
 // settings
 char mode_abs=1;  // absolute mode, default yes
-double FeedRate=1000;
+double FeedRate=400;
 
 long line_number=0;
 

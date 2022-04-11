@@ -12,11 +12,11 @@ int InverseKinematicsTransform (double R, double H, double &Shoulder, double &El
 // by the length of arm, Transform r and h to angle input of Shoulder and Elbow joint
 double BackArm_mm=80;
 double ForeArm_mm=80;
-double d_Min=15;
-double d_Max=155;
+double d_Min=23;
+double d_Max=195;
 
 //offset for physical structure
-double R_offset_mm=7.5; // length in MM, that the Left and Right servo place outward than rotation centre
+double R_offset_mm=0; // length in MM, that the Left and Right servo place outward than rotation centre
 
 //a function to transform R-H to Shoulder-Elbow, in terms of rotation centre
 int InverseKinematicsTransform (double R, double H, double &Shoulder, double &Elbow){

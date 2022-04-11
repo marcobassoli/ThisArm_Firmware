@@ -58,7 +58,7 @@ unsigned long timer=0;   //general purpuse timer
 unsigned long timer_old;
 unsigned long executionTime = 8;
 unsigned long executionTimeStart = 0;
-unsigned long G_Dt=2500;    // Integration time (DCM algorithm)
+// unsigned long G_Dt=2500;    // Integration time (DCM algorithm)
 
 //ControlCounter
 unsigned int servoSelected=0;
@@ -66,9 +66,9 @@ unsigned int analogJointSelected=0;
 
 //JointControl, angle in Degree
 double BaseAngle =90;
-double Shoulder=90;
-double Elbow=90;
-double Claw=45;
+double Shoulder=125;
+double Elbow=60;
+double Claw=75;
 
 //Invert Kinetic control, in polar coordinate R, H and A
 double R;
@@ -107,7 +107,7 @@ void setup() {
    * 6: XYZ Encoder Control
    * 7: GCode XYZ Control
    */
-  CurrentStage=0;
+  CurrentStage=5;
   Stages[CurrentStage].InitProc();
 }
 
@@ -123,10 +123,10 @@ void loop() {
     timer_old = timer;
     timer=micros();
     
-    if (timer>timer_old)
-      G_Dt = timer-timer_old;    // Real time of loop run. We use this on the DCM algorithm (gyro integration time)
-    else
-      G_Dt = 0; 
+    // if (timer>timer_old)
+    //   G_Dt = timer-timer_old;    // Real time of loop run. We use this on the DCM algorithm (gyro integration time)
+    // else
+    //   G_Dt = 0; 
       
     //Main Control logic loop
     //auto control logic / G-code interpertater/ path planning should be here......
@@ -171,11 +171,11 @@ void loop() {
       //Acquire Click parameter, released=1, pressed down=0
 
       //Acquire Potentialmeter reading
-      Joints[analogJointSelected].value=analogRead(Joints[analogJointSelected].pin);
-      Joints[analogJointSelected].angle=LinearMap_int(Joints[analogJointSelected].raw_1, Joints[analogJointSelected].ang_1,Joints[analogJointSelected].raw_2, Joints[analogJointSelected].ang_2, Joints[analogJointSelected].value);
-      analogJointSelected++;
-      if (analogJointSelected>=NumOfJoint)
-        analogJointSelected=0;
+      // Joints[analogJointSelected].value=analogRead(Joints[analogJointSelected].pin);
+      // Joints[analogJointSelected].angle=LinearMap_int(Joints[analogJointSelected].raw_1, Joints[analogJointSelected].ang_1,Joints[analogJointSelected].raw_2, Joints[analogJointSelected].ang_2, Joints[analogJointSelected].value);
+      // analogJointSelected++;
+      // if (analogJointSelected>=NumOfJoint)
+      //   analogJointSelected=0;
     }
     
     //Output Loop at 100 Hz (4 loop runs)
@@ -210,21 +210,19 @@ void loop() {
       //DisplayLogicAngle();
       //DisplayJointRaw();
       //DisplayJointAngle();
-      if ( Stages[CurrentStage].DisplayProc!=EmptyProc){
-        Serial.print (Stages[CurrentStage].StageName);
-        Serial.print (": ");
-      }
-      Stages[CurrentStage].DisplayProc();
+      // if ( Stages[CurrentStage].DisplayProc!=EmptyProc){
+      //   Serial.print (Stages[CurrentStage].StageName);
+      //   Serial.print (": ");
+      // }
+      // Stages[CurrentStage].DisplayProc();
       
     }
 
     executionTime=micros() - executionTimeStart;
   }
-  else {
-    if (micros()-timer<=0){
-      //Handle the case of marcos() function overflow
+  else if (micros()-timer<=0){
+      //Handle the case of micros() function overflow
       timer=0;
-    }
   }
   
   

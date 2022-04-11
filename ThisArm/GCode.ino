@@ -136,19 +136,29 @@ int setpoint (double NewX, double NewY, double NewZ){
 //     GcodeDebug("NewElbow: ");
 //    GcodeDebugln (NewElbow);
 //        
-    ASet(AngularServos[ServoBase] , NewA);
-    ASet(AngularServos[ServoRight], NewShoulder);
-    ASet(AngularServos[ServoLeft], NewElbow+NewShoulder);
+    AngularServos[ServoBase].Angle=NewA;
+    AngularServos[ServoRight].Angle=NewShoulder;
+    AngularServos[ServoLeft].Angle=NewElbow+NewShoulder;
+
+    ASet(AngularServos[ServoBase] , AngularServos[ServoBase].Angle);
+    ASet(AngularServos[ServoRight], AngularServos[ServoRight].Angle);
+    ASet(AngularServos[ServoLeft], AngularServos[ServoLeft].Angle);
     
     X=NewX;
     Y=NewY;
     Z=NewZ;
+    R=NewR;
+    H=NewH;
+    A=NewA;
+    Shoulder=NewShoulder;
+    Elbow=NewElbow;
+    BaseAngle=A;
     return 0;
 }
 
 int LinearSetpoint (double NewX, double NewY, double NewZ, double MMpM){ // feed rate in MM per Minute
   int num_of_Loop;
-  int msPerLoop=10;// around 100 Hz
+  int msPerLoop=20;// around 100 Hz
   int i=0;
   double deltaX, deltaY, deltaZ;
   double Distance;
@@ -160,8 +170,8 @@ int LinearSetpoint (double NewX, double NewY, double NewZ, double MMpM){ // feed
   Distance=sqrt(deltaX*deltaX+deltaY*deltaY+deltaZ*deltaZ);
   num_of_Loop=Distance/MMpM*60*1000/msPerLoop;
   
-  //Serial.print ("num_of_Loop:");
-  //Serial.println (num_of_Loop);
+  // Serial.print ("num_of_Loop:");
+  // Serial.println (num_of_Loop);
   
   for (i=1; i<=num_of_Loop;i++){
     Startmillis=millis();

@@ -141,6 +141,7 @@ void EncoderARHControl(){
     //Calculate the raw value by mapping function
     ASet(AngularServos[i], AngularServos[i].Angle);
   }
+  Serial.println();
   
 }
 
