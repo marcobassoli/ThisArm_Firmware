@@ -64,8 +64,6 @@ int ASet(AngularServo AServo, float angle){
       AServo.Angle=angle;
   }
   AServo.ServoObj.write(AServo.value);
-  Serial.print(AServo.value);
-  Serial.print(" ");
   return rc;
   
 }
@@ -179,4 +177,3 @@ void AngularServoInit(){// extreme value: 654~2400
 * You should have received a copy of the GNU General Public License
 * along with Foobar. If not, see <http://www.gnu.org/licenses/>.
 */
-

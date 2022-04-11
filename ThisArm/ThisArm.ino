@@ -107,7 +107,7 @@ void setup() {
    * 6: XYZ Encoder Control
    * 7: GCode XYZ Control
    */
-  CurrentStage=5;
+  CurrentStage=7;
   Stages[CurrentStage].InitProc();
 }
 
@@ -210,11 +210,11 @@ void loop() {
       //DisplayLogicAngle();
       //DisplayJointRaw();
       //DisplayJointAngle();
-      // if ( Stages[CurrentStage].DisplayProc!=EmptyProc){
-      //   Serial.print (Stages[CurrentStage].StageName);
-      //   Serial.print (": ");
-      // }
-      // Stages[CurrentStage].DisplayProc();
+      if ( Stages[CurrentStage].DisplayProc!=EmptyProc){
+        Serial.print (Stages[CurrentStage].StageName);
+        Serial.print (": ");
+      }
+      Stages[CurrentStage].DisplayProc();
       
     }
 

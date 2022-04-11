@@ -75,7 +75,7 @@ float parsenumber(char code,float val) {
 } 
 
 void pause(long ms) {
-  Serial.println(ms);
+  // Serial.println(ms);
   delay(ms);
   
 }
@@ -207,7 +207,7 @@ void processCommand() {
     }
     
     rc=setpoint(NewX, NewY, NewZ);
-    where();
+    // where();
     break;
   }
   case  1: { // line
@@ -223,7 +223,7 @@ void processCommand() {
     FeedRate=parsenumber('F',FeedRate);
     
     rc=LinearSetpoint(NewX, NewY, NewZ,FeedRate);
-    where();
+    // where();
     break;
   }
   
@@ -253,8 +253,8 @@ void processCommand() {
  */
 void ready() {
   sofar=0;  // clear input buffer
-  Serial.println(F("ok"));  // signal ready to receive input
-  Serial.print(F(">"));  // signal ready to receive input
+  Serial.print(F("ok\n\r"));  // signal ready to receive input
+  // Serial.print(F(">"));  // signal ready to receive input
   
 }
 
@@ -263,9 +263,9 @@ void ready() {
 void Gcodeinit(){
   Serial.println("Gcode Control initializated");
   
-  setpoint(00,20,00);
-  LinearSetpoint(00,20,00,1000);
-  where();
+  setpoint(00,80,00);
+  LinearSetpoint(00,80,00,1000);
+  // where();
   ready();
 }
 
@@ -273,7 +273,7 @@ void GCodeControl(){
   // listen for serial commands
   while(Serial.available() > 0) {  // if something is available
     char c=Serial.read();  // get it
-    Serial.print(c);  // repeat it back so I know you got the message
+    // Serial.print(c);  // repeat it back so I know you got the message
     if(sofar<MAX_BUF-1) buffer[sofar++]=c;  // store it
     if(c=='\n') {
       // entire message received
@@ -282,7 +282,7 @@ void GCodeControl(){
       //Serial.print ("sofar Size: ");
       //Serial.println (sofar);
       
-      Serial.print(F("\r\n"));  // echo a return character for humans
+      // Serial.print(F("\r\n"));  // echo a return character for humans
       processCommand();  // do something with the command
       ready();
     }
@@ -306,4 +306,3 @@ void GCodeControl(){
 * You should have received a copy of the GNU General Public License
 * along with Foobar. If not, see <http://www.gnu.org/licenses/>.
 */
-
