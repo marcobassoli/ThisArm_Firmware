@@ -72,11 +72,11 @@ void AngularServoInit(){// extreme value: 654~2400
   //Base Servo
   AngularServos[ServoBase].PIN = 10;
   AngularServos[ServoBase].MIN = 600;
-  AngularServos[ServoBase].MAX = 2328;
+  AngularServos[ServoBase].MAX = 2400;
   //AngularServos[ServoBase].MAX = 2400;
-  AngularServos[ServoBase].raw_1=1294;
+  AngularServos[ServoBase].raw_1=1260;
   AngularServos[ServoBase].ang_1=90; //This should bring the arm face forward
-  AngularServos[ServoBase].raw_2=2194;
+  AngularServos[ServoBase].raw_2=2157;
   AngularServos[ServoBase].ang_2=180; // This should bring the arm face the left hand side
   AngularServos[ServoBase].INITANGLE = 90;
   //Left Servo

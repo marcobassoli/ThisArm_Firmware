@@ -18,7 +18,8 @@ double d_Max=155;
 //double d_Max=195;
 
 //offset for physical structure
-double R_offset_mm=7.5; // length in MM, that the Left and Right servo place outward than rotation centre
+// double R_offset_mm=7.5; // length in MM, that the Left and Right servo place outward than rotation centre
+double R_offset_mm=-10; // length in MM, that the Left and Right servo place outward than rotation centre
 
 //a function to transform R-H to Shoulder-Elbow, in terms of rotation centre
 int InverseKinematicsTransform (double R, double H, double &Shoulder, double &Elbow){
